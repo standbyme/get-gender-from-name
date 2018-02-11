@@ -36,6 +36,7 @@
     "baidu-baike-link": "^1.1.0",
     "baidu-baike-parser": "^1.0.0",
     "funfix-core": "^6.2.2",
-    "lodash": "^4.17.5"
+    "lodash": "^4.17.5",
+    "xtranslation": "^1.0.0"
   }
 }
