@@ -15,6 +15,7 @@
   },
   "homepage": "https://github.com/thegatheringstorm/get-gender-from-name#readme",
   "devDependencies": {
+    "@types/koa": "^2.0.44",
     "@types/lodash": "^4.14.102",
     "@types/mocha": "^2.2.47",
     "del": "^3.0.0",
@@ -36,6 +37,9 @@
     "baidu-baike-link": "^1.1.0",
     "baidu-baike-parser": "^1.0.0",
     "funfix-core": "^6.2.2",
+    "koa": "^2.5.0",
+    "koa-body": "^2.5.0",
+    "koa-cors": "^0.0.16",
     "lodash": "^4.17.5",
     "xtranslation": "^1.1.0"
   }
