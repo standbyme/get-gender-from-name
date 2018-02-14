@@ -5,9 +5,15 @@ import baidu_baike_link from 'baidu-baike-link'
 import baidu_baike_parser from 'baidu-baike-parser'
 import { Option } from 'funfix-core'
 import * as _ from 'lodash'
-// tslint:disable-next-line:import-blacklist
-import * as Rx from 'rxjs/Rx'
-import { mergeMap } from 'rxjs/operators'
+import { Observable } from 'rxjs/Observable'
+// tslint:disable:no-import-side-effect
+import 'rxjs/add/observable/from'
+import 'rxjs/add/operator/every'
+import 'rxjs/add/operator/filter'
+import 'rxjs/add/operator/isEmpty'
+import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/mergeMap'
+
 // tslint:disable-next-line:no-any
 axios.interceptors.response.use(undefined, function axiosRetryInterceptor(err: any) {
     const config = err.config
@@ -55,8 +61,8 @@ async function get_gender_from_link(link: string): Promise<{ link: string, gende
 
 export async function get_gender_from_name(name: string): Promise<Option<Gender>> {
     const links = await baidu_baike_link(name)
-    const link__observable = Rx.Observable.from(links)
-    const gender__observable = link__observable.pipe(mergeMap(link => get_gender_from_link(link))).filter(lg => lg.gender__opt.nonEmpty()).map(lg => lg.gender__opt.get())
+    const link__observable = Observable.from(links)
+    const gender__observable = link__observable.mergeMap(link => get_gender_from_link(link)).filter(lg => lg.gender__opt.nonEmpty()).map(lg => lg.gender__opt.get())
 
     const is_empty = await gender__observable.isEmpty().toPromise()
     if (is_empty) {
