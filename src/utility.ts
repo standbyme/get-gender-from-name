@@ -48,7 +48,7 @@ axios.interceptors.response.use(undefined, function axiosRetryInterceptor(err: a
 
 async function get_html(url: string): Promise<string> {
     // @ts-ignore
-    const { data } = await axios.get(url, { retry: 3, retryDelay: 500 })
+    const { data } = await axios.get(url, { retry: 3, retryDelay: 500, timeout: 5000 })
     return data
 }
 
